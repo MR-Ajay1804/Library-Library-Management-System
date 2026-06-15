@@ -15,3 +15,5 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+server-cmd-log.txt
+server-log.txt

@@ -79,8 +79,8 @@ const server = http.createServer(async (request, response) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Library Management backend running at http://localhost:${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Library Management backend running on port ${PORT}`);
 });
 
 async function handleApi(request, response, url) {
