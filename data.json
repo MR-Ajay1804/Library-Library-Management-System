@@ -1,0 +1,103 @@
+{
+  "books": [
+    {
+      "id": "dc4cba0f-a287-4dab-98b3-d3d6377fa89c",
+      "title": "Database Management Systems",
+      "author": "Raghu Ramakrishnan",
+      "category": "Computer Science",
+      "copies": 5,
+      "available": 5
+    },
+    {
+      "id": "8e14f737-14d6-480a-98f6-30594983d904",
+      "title": "A Brief History of Time",
+      "author": "Stephen Hawking",
+      "category": "Science",
+      "copies": 3,
+      "available": 3
+    },
+    {
+      "id": "36f4471d-a308-4bdc-837e-13a85911c629",
+      "title": "Discrete Mathematics",
+      "author": "Kenneth Rosen",
+      "category": "Mathematics",
+      "copies": 4,
+      "available": 4
+    },
+    {
+      "id": "84d4c80d-0371-4648-acd7-e2298f1524cb",
+      "title": "Moments",
+      "author": "AJAY",
+      "category": "Literature",
+      "copies": 10,
+      "available": 10
+    }
+  ],
+  "members": [
+    {
+      "id": "LIB1001",
+      "name": "Ananya Sharma",
+      "department": "BCA 2nd Year"
+    },
+    {
+      "id": "LIB1002",
+      "name": "Rahul Verma",
+      "department": "BSc Computer Science"
+    },
+    {
+      "id": "LIB1003",
+      "name": "Ajay kumar saini",
+      "department": "B.TECH 4TH YEAR",
+      "createdAt": "2026-05-02T04:50:22.573Z",
+      "updatedAt": "2026-05-02T05:15:01.417Z"
+    },
+    {
+      "id": "LIB1004",
+      "name": "Anjali",
+      "department": "B.TECH 4TH YEAR",
+      "createdAt": "2026-05-02T04:59:37.925Z",
+      "updatedAt": "2026-05-19T16:18:24.852Z"
+    }
+  ],
+  "issues": [
+    {
+      "id": "de24ab30-4f97-473c-bae0-665531ea6747",
+      "bookId": "8e14f737-14d6-480a-98f6-30594983d904",
+      "memberId": "LIB1001",
+      "dueDate": "2026-04-28",
+      "returned": true
+    },
+    {
+      "id": "90fe6637-be1d-49db-9904-27beb04334f6",
+      "bookId": "8e14f737-14d6-480a-98f6-30594983d904",
+      "memberId": "LIB1001",
+      "dueDate": "2026-04-28",
+      "returned": true
+    },
+    {
+      "id": "46bf6959-2d15-4f09-b8fe-7c344b24c7e0",
+      "bookId": "dc4cba0f-a287-4dab-98b3-d3d6377fa89c",
+      "memberId": "LIB1001",
+      "dueDate": "2026-04-28",
+      "returned": true
+    },
+    {
+      "id": "36a8c81f-d621-457b-9fc8-930707134d0b",
+      "bookId": "dc4cba0f-a287-4dab-98b3-d3d6377fa89c",
+      "memberId": "LIB1004",
+      "dueDate": "2026-05-02",
+      "returned": true,
+      "issuedAt": "2026-05-02T05:15:51.305Z",
+      "returnedAt": "2026-05-02T05:16:29.236Z"
+    },
+    {
+      "id": "e48ab4f2-8dd4-4b14-ad57-167c23f8eb67",
+      "bookId": "8e14f737-14d6-480a-98f6-30594983d904",
+      "memberId": "LIB1004",
+      "dueDate": "2026-05-03",
+      "returned": true,
+      "issuedAt": "2026-05-02T05:16:17.062Z",
+      "returnedAt": "2026-05-02T05:16:30.757Z"
+    }
+  ]
+}

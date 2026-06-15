@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Library Management</p>
+        <h1>Central Library Desk</h1>
+      </div>
+      <div class="quick-search">
+        <span aria-hidden="true">Search</span>
+        <input id="searchInput" type="search" placeholder="Search books, authors, members..." />
+      </div>
+    </header>
+
+    <main>
+      <section class="stats" aria-label="Library summary">
+        <article class="stat">
+          <span>Total Books</span>
+          <strong id="totalBooks">0</strong>
+        </article>
+        <article class="stat">
+          <span>Available</span>
+          <strong id="availableBooks">0</strong>
+        </article>
+        <article class="stat">
+          <span>Members</span>
+          <strong id="totalMembers">0</strong>
+        </article>
+        <article class="stat">
+          <span>Issued</span>
+          <strong id="issuedBooks">0</strong>
+        </article>
+        <article class="stat">
+          <span>Overdue</span>
+          <strong id="overdueBooks">0</strong>
+        </article>
+        <article class="stat">
+          <span>Deposited</span>
+          <strong id="depositedBooks">0</strong>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel">
+          <div class="tabs" role="tablist" aria-label="Library forms">
+            <button class="tab active" data-tab="bookForm" type="button">Books</button>
+            <button class="tab" data-tab="memberForm" type="button">Members</button>
+            <button class="tab" data-tab="issueForm" type="button">Issue</button>
+          </div>
+
+          <form id="bookForm" class="form tab-panel active">
+            <h2>Add Book</h2>
+            <label>
+              Book Title
+              <input name="title" required placeholder="Database Systems" />
+            </label>
+            <label>
+              Author
+              <input name="author" required placeholder="C. J. Date" />
+            </label>
+            <label>
+              Category
+              <select name="category" required>
+                <option>Computer Science</option>
+                <option>Mathematics</option>
+                <option>Science</option>
+                <option>Literature</option>
+                <option>History</option>
+              </select>
+            </label>
+            <label>
+              Copies
+              <input name="copies" type="number" min="1" value="1" required />
+            </label>
+            <button class="primary" type="submit">Add Book</button>
+          </form>
+
+          <form id="memberForm" class="form tab-panel">
+            <div class="form-title-row">
+              <div>
+                <h2 id="memberFormTitle">Add Member</h2>
+                <p id="memberFormHint" class="form-hint">Member ID is unique, like a primary key.</p>
+              </div>
+              <button id="cancelMemberEdit" class="ghost-btn" type="button" hidden>Cancel</button>
+            </div>
+            <label>
+              Member Name
+              <input name="name" required placeholder="Ananya Sharma" />
+            </label>
+            <label>
+              Member ID
+              <input name="memberId" required placeholder="LIB1024" autocomplete="off" />
+            </label>
+            <label>
+              Class / Qualification / Department
+              <input name="department" required placeholder="B.Tech 4th Year" />
+            </label>
+            <button id="memberSubmitButton" class="primary" type="submit">Add Member</button>
+          </form>
+
+          <form id="issueForm" class="form tab-panel">
+            <h2>Issue Book</h2>
+            <label>
+              Select Book
+              <select name="bookId" id="bookSelect" required></select>
+            </label>
+            <label>
+              Select Member
+              <select name="memberId" id="memberSelect" required></select>
+            </label>
+            <label>
+              Due Date
+              <input name="dueDate" type="date" required />
+            </label>
+            <button class="primary" type="submit">Issue Book</button>
+          </form>
+        </aside>
+
+        <section class="library-view">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Collection</p>
+              <h2>Books</h2>
+            </div>
+            <select id="categoryFilter" aria-label="Filter by category">
+              <option value="all">All Categories</option>
+              <option>Computer Science</option>
+              <option>Mathematics</option>
+              <option>Science</option>
+              <option>Literature</option>
+              <option>History</option>
+            </select>
+          </div>
+          <div id="bookGrid" class="book-grid"></div>
+        </section>
+      </section>
+
+      <section class="records member-records">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Registered Till Date</p>
+            <h2>Member Records</h2>
+          </div>
+          <div class="record-summary" aria-label="Member record summary">
+            <span><strong id="memberRecordTotal">0</strong> members</span>
+            <span><strong id="memberActiveTotal">0</strong> active</span>
+            <span><strong id="memberDepositTotal">0</strong> deposited</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Qualification / Department</th>
+                <th>Issued Now</th>
+                <th>Overdue</th>
+                <th>Deposited</th>
+                <th>Current Books</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="memberTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="records">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Circulation</p>
+            <h2>Issued Books</h2>
+          </div>
+          <label class="check-filter">
+            <input type="checkbox" id="overdueFilter" />
+            Show only overdue
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Book</th>
+                <th>Member</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="issueTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <template id="emptyStateTemplate">
+      <div class="empty-state">
+        <div class="empty-art" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <p>No records found.</p>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
